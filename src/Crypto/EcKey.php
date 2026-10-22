@@ -143,10 +143,10 @@ final class EcKey
             if ($integer === '' || \ord($integer[0]) > 0x7F) {
                 $integer = "\0".$integer;
             }
-            $sequence .= "\x02".\chr(\strlen($integer)).$integer;
+            $sequence .= "\x02".pack('C', \strlen($integer)).$integer;
         }
 
-        return "\x30".\chr(\strlen($sequence)).$sequence;
+        return "\x30".pack('C', \strlen($sequence)).$sequence;
     }
 
     private static function readLength(string $der, int &$offset): int
