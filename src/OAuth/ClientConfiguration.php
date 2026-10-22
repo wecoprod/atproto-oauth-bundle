@@ -37,6 +37,10 @@ final class ClientConfiguration
         if (!\in_array('atproto', explode(' ', $scope), true)) {
             throw new \InvalidArgumentException('The scope must include "atproto".');
         }
+        // Authorization servers reject the metadata otherwise (invalid_client_metadata)
+        if ($clientUri !== null && self::origin($clientUri) !== self::origin($clientId)) {
+            throw new \InvalidArgumentException(\sprintf('The client_uri "%s" must have the same origin as the client_id.', $clientUri));
+        }
 
         $this->keyId = $keyId ?? $clientKey->thumbprint();
         $this->jwksUri = $jwksUri ?? self::siblingUrl($clientId, 'jwks.json');
@@ -78,10 +82,15 @@ final class ClientConfiguration
 
     private static function siblingUrl(string $url, string $file): string
     {
-        $parts = parse_url($url);
-        $origin = ($parts['scheme'] ?? 'https').'://'.($parts['host'] ?? '').(isset($parts['port']) ? ':'.$parts['port'] : '');
-        $directory = str_replace('\\', '/', \dirname($parts['path'] ?? '/x'));
+        $directory = str_replace('\\', '/', \dirname(parse_url($url, \PHP_URL_PATH) ?: '/x'));
 
-        return $origin.rtrim($directory, '/').'/'.$file;
+        return self::origin($url).rtrim($directory, '/').'/'.$file;
+    }
+
+    private static function origin(string $url): string
+    {
+        $parts = parse_url($url);
+
+        return strtolower(($parts['scheme'] ?? 'https').'://'.($parts['host'] ?? '')).(isset($parts['port']) ? ':'.$parts['port'] : '');
     }
 }

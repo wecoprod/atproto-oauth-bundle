@@ -57,7 +57,7 @@ wecoprod_atproto_oauth:
         - 'https://app.example.com/bluesky/callback'
     private_key: '%env(ATPROTO_OAUTH_PRIVATE_KEY)%'
     client_name: 'My app'
-    client_uri: 'https://app.example.com'
+    client_uri: 'https://app.example.com'     # must have the same origin as client_id
     logo_uri: 'https://app.example.com/logo.png'
     tos_uri: 'https://app.example.com/terms'
     policy_uri: 'https://app.example.com/privacy'
