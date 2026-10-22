@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.0 (unreleased)
+## 0.1.0 (2026-10-22)
 
 - First version: confidential atproto OAuth client (PAR, PKCE S256, DPoP with server nonces, private_key_jwt ES256)
 - Identity resolution: handle (DNS TXT, HTTPS well-known) → DID (did:plc, did:web) → PDS → authorization server, with bidirectional handle check
