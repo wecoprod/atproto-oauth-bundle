@@ -1,0 +1,63 @@
+{
+    "name": "wecoprod/atproto-oauth-bundle",
+    "description": "Symfony bundle for AT Protocol (Bluesky) OAuth: confidential client with DPoP, PAR, PKCE and private_key_jwt",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "keywords": [
+        "atproto",
+        "bluesky",
+        "oauth",
+        "dpop",
+        "symfony",
+        "symfony-bundle"
+    ],
+    "homepage": "https://github.com/wecoprod/atproto-oauth-bundle",
+    "authors": [
+        {
+            "name": "Wecoprod",
+            "homepage": "https://wecopost.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.2",
+        "ext-json": "*",
+        "ext-openssl": "*",
+        "psr/cache": "^2.0 || ^3.0",
+        "psr/log": "^2.0 || ^3.0",
+        "symfony/config": "^7.2 || ^8.0",
+        "symfony/dependency-injection": "^7.2 || ^8.0",
+        "symfony/http-client": "^7.2 || ^8.0",
+        "symfony/http-foundation": "^7.2 || ^8.0",
+        "symfony/http-kernel": "^7.2 || ^8.0",
+        "symfony/routing": "^7.2 || ^8.0"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^2.1",
+        "phpunit/phpunit": "^11.5",
+        "symfony/cache": "^7.2 || ^8.0",
+        "symfony/console": "^7.2 || ^8.0",
+        "symfony/framework-bundle": "^7.2 || ^8.0",
+        "symfony/lock": "^7.2 || ^8.0"
+    },
+    "suggest": {
+        "symfony/lock": "Serializes token refreshes across workers (refresh tokens are single use)",
+        "symfony/console": "Provides the atproto-oauth:generate-key command"
+    },
+    "autoload": {
+        "psr-4": {
+            "Wecoprod\\AtprotoOAuthBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Wecoprod\\AtprotoOAuthBundle\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "scripts": {
+        "test": "phpunit",
+        "phpstan": "phpstan analyse"
+    }
+}
