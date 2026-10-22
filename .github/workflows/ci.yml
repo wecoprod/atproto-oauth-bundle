@@ -20,9 +20,9 @@ jobs:
           - php: '8.4'
             symfony: '7.4.*'
           - php: '8.4'
-            symfony: '8.0.*'
+            symfony: '8.*'
           - php: '8.5'
-            symfony: '8.0.*'
+            symfony: '8.*'
     steps:
       - uses: actions/checkout@v4
       - uses: shivammathur/setup-php@v2
